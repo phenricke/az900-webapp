@@ -47,30 +47,29 @@ jobs:
       # 2. Refer to sample workflows for alternative deployment strategies: https://github.com/Azure/actions-workflow-samples/tree/master/AppService
       
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+deploy:
+  runs-on: ubuntu-latest
+  needs: build
+  permissions:
+    id-token: write
+    contents: read
 
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4
-        with:
-          name: python-app
-      
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_81DBE8CBAD1145FF9C5E37409777992A }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_9AC23334139E406B80585635ECEC301C }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_408C897E557B45A1B2D58C08EB72778B }}
+  steps:
+    - name: Download artifact from build job
+      uses: actions/download-artifact@v4
+      with:
+        name: python-app
 
-      - name: 'Deploy to Azure Web App'
-  uses: azure/webapps-deploy@v3
-  id: deploy-to-webapp
-  with:
-    app-name: 'az900-webapp-pedro'
-    slot-name: 'Production'
-    package: app  
+    - name: Login to Azure
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_81DBE8CBAD1145FF9C5E37409777992A }}
+        tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_9AC23334139E406B80585635ECEC301C }}
+        subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_408C897E557B45A1B2D58C08EB72778B }}
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v3
+      with:
+        app-name: 'az900-webapp-pedro'
+        slot-name: 'Production'
+        package: app
