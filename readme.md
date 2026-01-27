@@ -62,11 +62,12 @@ python app.py
    ```powershell
    New-AzResourceGroup -Name rg-az900-webapp -Location "Brazil South"
 3. **Criar App Service Plan**
-   ````powershell
+   ```powershell
    New-AzAppServicePlan -Name plan-az900 `
   -ResourceGroupName rg-az900-webapp `
   -Location "Brazil South" `
   -Tier Basic
+  ```
 4. **Criar App Service** 
    ```powershell
    New-AzWebApp -Name az900-webapp-pedro `
