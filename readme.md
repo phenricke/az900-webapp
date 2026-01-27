@@ -67,7 +67,7 @@ python app.py
   -ResourceGroupName rg-az900-webapp `
   -Location "Brazil South" `
   -Tier Basic
-  ```
+
 4. **Criar App Service** 
    ```powershell
    New-AzWebApp -Name az900-webapp-pedro `
