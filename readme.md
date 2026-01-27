@@ -22,12 +22,14 @@ O objetivo é demonstrar como hospedar uma aplicação simples em **Azure App Se
 ---
 
 ## 📂 Estrutura do Repositório
-
 az900-webapp/
-│── app/           # Código da aplicação
-│── docs/          # Documentação e resumos
-│── .github/       # Workflows CI/CD
-│── README.md      # Explicação do projeto
+│── app/
+│   ├── app.py              # Código principal da aplicação Flask
+│   ├── requirements.txt    # Dependências da aplicação
+│── .github/
+│   └── workflows/
+│       └── azure-webapps.yml   # Workflow gerado pelo Deployment Center
+│── README.md
 
 ---
 
@@ -50,11 +52,36 @@ python app.py
 4. 	Acesse em:  (localhost in Bing)
 - Acesse em: http://localhost:5000 (localhost in Bing)
 
-🌐 Deploy no Azure App Service
+---
 
-1. 	Crie um Resource Group:
-New-AzResourceGroup -Name rg-az900-webapp -Location "Brazil South"
-2. 	Crie um App Service Plan:
-New-AzAppServicePlan -Name plan-az900 -ResourceGroupName rg-az900-webapp -Location "Brazil South" -Tier Basic
-3. 	Crie o App Service:
-New-AzWebApp -Name az900-webapp-pedro -ResourceGroupName rg-az900-webapp -Location "Brazil South" -AppServicePlan plan-az900
+## 🛠️ Provisionando recursos com Azure PowerShell
+1. **Login no Azure**
+   ```powershell
+   Connect-AzAccount
+2. **Criar Resource Group**
+   ```powershell
+   New-AzResourceGroup -Name rg-az900-webapp -Location "Brazil South"
+3. **Criar App Service Plan**
+   ```powershell
+   New-AzAppServicePlan -Name plan-az900 `
+  -ResourceGroupName rg-az900-webapp `
+  -Location "Brazil South" `
+  -Tier Basic
+4. **Criar App Service** 
+   ```powershell
+   New-AzWebApp -Name az900-webapp-pedro `
+  -ResourceGroupName rg-az900-webapp `
+  -Location "Brazil South" `
+  -AppServicePlan plan-az900
+
+---
+
+🔄 Configurando CI/CD com Deployment Center
+1. Abra seu App Service.
+2. Vá em Deployment Center.
+3. Conecte sua conta GitHub.
+4. Selecione:
+• 	Organização (seu usuário GitHub).
+• 	Repositório ().
+• 	Branch ().
+5. O Azure cria automaticamente o workflow em .github/workflows/azure-webapps.yml
