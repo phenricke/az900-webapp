@@ -64,9 +64,13 @@ python app.py
 3. **Criar App Service Plan**
    ```powershell
    New-AzAppServicePlan -Name plan-az900 `
+   ```powershell
   -ResourceGroupName rg-az900-webapp `
+  ```powershell
   -Location "Brazil South" `
+  ```powershell
   -Tier Basic
+  ```powershell
 4. **Criar App Service** 
    ```powershell
    New-AzWebApp -Name az900-webapp-pedro `
