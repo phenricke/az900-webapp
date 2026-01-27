@@ -62,17 +62,18 @@ python app.py
    ```powershell
    New-AzResourceGroup -Name rg-az900-webapp -Location "Brazil South"
 3. **Criar App Service Plan**
-   ````powershell
+   ```powershell
    New-AzAppServicePlan -Name plan-az900 `
   -ResourceGroupName rg-az900-webapp `
   -Location "Brazil South" `
-  -Tier Basic`
+  -Tier Basic
 4. **Criar App Service** 
    ```powershell
    New-AzWebApp -Name az900-webapp-pedro `
   -ResourceGroupName rg-az900-webapp `
   -Location "Brazil South" `
-  -AppServicePlan plan-az900`
+  -AppServicePlan plan-az900
+
 ---
 
 🔄 Configurando CI/CD com Deployment Center
@@ -84,3 +85,54 @@ python app.py
 • 	Repositório ().
 • 	Branch ().
 5. O Azure cria automaticamente o workflow em .github/workflows/azure-webapps.yml
+
+---
+
+## 📈 Monitoramento e Logs
+
+Para acompanhar a saúde da aplicação e detectar problemas de forma proativa, configure o **Application Insights** e os logs no Azure App Service.
+
+### 🔎 Application Insights
+1. No **Portal do Azure**, abra o App Service `az900-webapp-pedro`.
+2. Vá em **Configurações → Application Insights**.
+3. Clique em **Ativar**.
+4. Crie ou vincule um recurso de Application Insights, por exemplo: ai-az900-webapp-pedro
+- Região: Brazil South
+- Resource Group: rg-az900-webapp
+5. Salve e reinicie o App Service.
+
+### 📊 Logs e Métricas
+- **Log Stream**  
+- Acesse **Monitoramento → Log Stream** para visualizar logs em tempo real da aplicação.
+
+- **Configurações de Diagnóstico**  
+- Vá em **Configurações → Configurações de Diagnóstico**.  
+- Ative:
+ - *Application Logging (Filesystem)* → nível Information.  
+ - *Web Server Logging* → formato W3C.  
+- Exemplo de nome para storage:  
+ ```
+ stlogsaz900pedro
+ ```
+
+- **Métricas**  
+- Em **Monitoramento → Métricas**, crie gráficos para:
+ - Requisições por segundo.  
+ - Taxa de erros HTTP (4xx/5xx).  
+ - Tempo médio de resposta.  
+ - Consumo de CPU e memória.
+
+- **Alertas**  
+- No recurso `ai-az900-webapp-pedro`, vá em **Alertas → Nova regra de alerta**.  
+- Exemplos:
+ - `alerta-erros-az900` → dispara se erros > 5% em 5 minutos.  
+ - `alerta-latencia-az900` → dispara se tempo médio > 2s.  
+- Configure ação para enviar e-mail para sua conta.
+
+---
+
+## 🎯 Benefícios
+- Visibilidade completa da saúde da aplicação.  
+- Logs em tempo real para depuração.  
+- Métricas e alertas automáticos para detectar falhas e gargalos.  
+- Monitoramento contínuo com **Application Insights** integrado ao App Service.
