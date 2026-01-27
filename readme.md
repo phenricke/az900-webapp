@@ -17,7 +17,7 @@ O objetivo é demonstrar como hospedar uma aplicação simples em **Azure App Se
 - **Azure Resource Groups**
 - **GitHub Actions** (CI/CD)
 - **Application Insights**
-- Linguagem: Python (Flask) ou Node.js (Express)
+- Linguagem: Python (Flask)
 
 ---
 
@@ -41,5 +41,20 @@ az900-webapp/
 ### Passos
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/az900-webapp.git
+   git clone https://github.com/phenricke/az900-webapp.git
    cd az900-webapp/app
+2. 	Instale as dependências (Python/Flask):
+pip install -r requirements.txt
+3. 	Execute a aplicação:
+python app.py
+4. 	Acesse em:  (localhost in Bing)
+- Acesse em: http://localhost:5000 (localhost in Bing)
+
+🌐 Deploy no Azure App Service
+
+1. 	Crie um Resource Group:
+New-AzResourceGroup -Name rg-az900-webapp -Location "Brazil South"
+2. 	Crie um App Service Plan:
+New-AzAppServicePlan -Name plan-az900 -ResourceGroupName rg-az900-webapp -Location "Brazil South" -Tier Basic
+3. 	Crie o App Service:
+New-AzWebApp -Name az900-webapp-pedro -ResourceGroupName rg-az900-webapp -Location "Brazil South" -AppServicePlan plan-az900
