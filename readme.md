@@ -46,11 +46,14 @@ az900-webapp/
    git clone https://github.com/phenricke/az900-webapp.git
    cd az900-webapp/app
 2. 	Instale as dependências (Python/Flask):
-pip install -r requirements.txt
+   ```bash
+   pip install -r requirements.txt
 3. 	Execute a aplicação:
-python app.py
+   ```bash
+   python app.py
 4. 	Acesse em:  (localhost in Bing)
-- Acesse em: http://localhost:5000 (localhost in Bing)
+   ```bash
+   Acesse em: http://localhost:5000 (localhost in Bing)
 
 ---
 
