@@ -37,7 +37,7 @@ az900-webapp/
 
 ### Pré-requisitos
 - [Python 3.9+](https://www.python.org/downloads/) ou [Node.js](https://nodejs.org/)
-- [Git](https://git-scm.com/)
+- [Git](https://github.com/)
 - Conta no [Azure](https://azure.microsoft.com/free/)
 
 ### Passos
